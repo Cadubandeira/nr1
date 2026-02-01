@@ -3,382 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NR-1 Psicologia | Consultoria Estratégica</title>
+    <title>NR-1 | Do Inconsciente ao Compliance</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-        :root {
-            --bg-warm: #FDFCF8;
-            --primary-clay: #D9836B;
-            --forest-green: #1A3C34;
-            --text-dark: #2D2D2D;
-            --apple-gray: #F5F5F7;
-        }
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/components.css">
+    <link rel="stylesheet" href="./assets/css/pages/index.css">
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-warm);
-            color: var(--text-dark);
-            scroll-behavior: smooth;
-        }
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
 
-        h1, h2, h3, .font-poppins {
-            font-family: 'Poppins', sans-serif;
-        }
 
-        .glass-nav {
-            background: rgba(253, 252, 248, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .btn-primary {
-            background-color: var(--primary-clay);
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            filter: brightness(1.1);
-            transform: translateY(-2px);
-        }
-
-        .card-shadow {
-            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-            border: 1px solid rgba(0,0,0,0.02);
-        }
-
-        .soft-gradient {
-            background: radial-gradient(circle at top right, rgba(217, 131, 107, 0.08), transparent);
-        }
-
-        /* Navegação SPA */
-        .page-section { display: none; }
-        .page-section.active { display: block; }
-
-        /* Estilo para áreas bloqueadas no dashboard */
-        .locked-widget {
-            position: relative;
-            filter: grayscale(0.8);
-            opacity: 0.7;
-        }
-
-        .locked-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(255,255,255,0.4);
-            backdrop-filter: blur(4px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            border-radius: inherit;
-        }
-    </style>
 </head>
 <body>
 
-    <!-- Navegação -->
-    <nav class="glass-nav fixed w-full z-50" id="mainNav">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-2 cursor-pointer" onclick="showPage('home')">
-                <div class="w-10 h-10 bg-[#D9836B] rounded-full flex items-center justify-center text-white">
-                    <i class="fa-solid fa-leaf"></i>
-                </div>
-                <span class="font-poppins font-semibold text-xl tracking-tight text-[#1A3C34]">NR1 Saúde Mental</span>
-            </div>
-            
-            <div class="hidden md:flex items-center gap-10 font-medium text-sm">
-                <a href="#solucoes" class="hover:text-[#D9836B] transition-colors">Soluções</a>
-                <a href="#metodologia" class="hover:text-[#D9836B] transition-colors">Infoproduto</a>
-                <button onclick="openLogin()" class="bg-[#1A3C34] text-white px-5 py-2.5 rounded-full hover:bg-opacity-90 transition-all">
-                    Área do Cliente <i class="fa-solid fa-arrow-right-to-bracket ml-2"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
+    <div id="progress-bar"></div>
+    <div id="custom-cursor"></div>
 
-    <!-- LANDING PAGE -->
-    <main id="home" class="page-section active pt-20">
-        
-        <!-- Hero Section -->
-        <section class="relative min-h-[90vh] flex items-center overflow-hidden soft-gradient">
-            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-8">
-                    <div class="inline-block px-4 py-1.5 bg-[#D9836B]/10 text-[#D9836B] rounded-full text-sm font-semibold">
-                        Portaria 1.419/2024 • Em Vigor
-                    </div>
-                    <h1 class="text-6xl md:text-7xl font-bold text-[#1A3C34] leading-[1.1]">
-                        Saúde Mental <br><span class="text-[#D9836B]">é Compliance.</span>
-                    </h1>
-                    <p class="text-xl text-gray-600 max-w-lg leading-relaxed">
-                        Transforme a obrigatoriedade da NR-1 em eficiência operacional. Consultoria especializada em riscos psicossociais para empresas que buscam segurança jurídica.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <button class="btn-primary px-8 py-4 rounded-full text-lg font-semibold flex items-center shadow-lg shadow-[#D9836B]/20">
-                            Falar com um Especialista
-                        </button>
-                    </div>
-                </div>
-                <div class="relative">
-                    <div class="bg-[#1A3C34]/5 rounded-[40px] p-12 border border-[#1A3C34]/10 flex items-center justify-center aspect-square">
-                        <svg viewBox="0 0 200 200" class="w-64 h-64 opacity-40">
-                            <circle cx="100" cy="100" r="80" fill="none" stroke="#1A3C34" stroke-width="2" stroke-dasharray="4 4"/>
-                            <path d="M60 100 Q100 60 140 100 T180 140" fill="none" stroke="#D9836B" stroke-width="3"/>
-                            <rect x="80" y="80" width="40" height="40" rx="8" fill="#1A3C34"/>
-                        </svg>
-                    </div>
-                    <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl card-shadow max-w-[240px]">
-                        <p class="text-sm font-medium text-gray-400 mb-1">Impacto em Curitiba</p>
-                        <p class="text-2xl font-bold text-[#1A3C34]">19 novos casos/dia</p>
-                        <p class="text-xs text-gray-400 mt-2 italic">Afastamentos médios por transtornos mentais.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Dados e Urgência -->
-        <section class="py-24 bg-white" id="solucoes">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="p-10 rounded-[32px] bg-[#F5F5F7] space-y-4">
-                        <span class="text-5xl font-bold text-[#D9836B]">143%</span>
-                        <h3 class="text-xl font-bold text-[#1A3C34]">Aumento de Afastamentos</h3>
-                        <p class="text-gray-600">Crescimento recorde em transtornos mentais e comportamentais no último ano.</p>
-                    </div>
-                    <div class="p-10 rounded-[32px] bg-[#1A3C34] text-white space-y-4">
-                        <span class="text-5xl font-bold text-[#D9836B]">R$ 4.7b</span>
-                        <h3 class="text-xl font-bold">Custo Previdenciário</h3>
-                        <p class="text-gray-300">Estimativa anual de gastos com benefícios por incapacidade mental no Brasil.</p>
-                    </div>
-                    <div class="p-10 rounded-[32px] bg-[#F5F5F7] space-y-4">
-                        <span class="text-5xl font-bold text-[#D9836B]">Maio/25</span>
-                        <h3 class="text-xl font-bold text-[#1A3C34]">Deadline NR-1</h3>
-                        <p class="text-gray-600">O prazo final para adequação do Inventário de Riscos Psicossociais no PGR.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SEÇÃO INFOPRODUTO -->
-        <section class="py-24 bg-[#1A3C34]" id="metodologia">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="grid md:grid-cols-2 gap-16 items-center">
-                    <div class="relative">
-                        <div class="bg-white/5 border border-white/10 p-8 rounded-[40px] aspect-[3/4] flex flex-col justify-between">
-                            <div class="space-y-4">
-                                <div class="w-12 h-1.5 bg-[#D9836B] rounded-full"></div>
-                                <h4 class="text-white text-3xl font-bold leading-tight">Guia Prático:<br>Implementação de Riscos Psicossociais na NR-1</h4>
-                                <p class="text-white/60 text-sm">Versão 2026 • 120 páginas • PDF Interativo</p>
-                            </div>
-                            <div class="bg-white/10 rounded-2xl p-6">
-                                <ul class="space-y-3 text-white/80 text-sm">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#D9836B]"></i> Modelos de Inventário Prontos</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#D9836B]"></i> Escalas de Avaliação Validadas</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-[#D9836B]"></i> Checklists de Auditoria</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Badge de preço -->
-                        <div class="absolute -top-4 -right-4 bg-[#D9836B] text-white p-6 rounded-full shadow-xl">
-                            <p class="text-xs uppercase font-bold text-center">Apenas</p>
-                            <p class="text-2xl font-bold">R$ 197</p>
-                        </div>
-                    </div>
-                    <div class="space-y-8">
-                        <h2 class="text-4xl font-bold text-white leading-tight">Autonomia para o seu <br><span class="text-[#D9836B]">Departamento de SST.</span></h2>
-                        <p class="text-white/70 text-lg leading-relaxed">
-                            Desenvolvemos um material completo para empresas que preferem realizar a adequação internamente. Aprenda a identificar os 7 fatores de risco e a documentar corretamente no PGR.
-                        </p>
-                        <div class="space-y-4">
-                            <div class="flex gap-4">
-                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-[#D9836B] flex-shrink-0">
-                                    <i class="fa-solid fa-book"></i>
-                                </div>
-                                <div>
-                                    <h5 class="text-white font-bold">Metodologia Passo a Passo</h5>
-                                    <p class="text-white/50 text-sm">Do diagnóstico à elaboração do plano de ação.</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4">
-                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-[#D9836B] flex-shrink-0">
-                                    <i class="fa-solid fa-shield-halved"></i>
-                                </div>
-                                <div>
-                                    <h5 class="text-white font-bold">Segurança Jurídica</h5>
-                                    <p class="text-white/50 text-sm">Alinhado rigorosamente com a Portaria 1.419/2024.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="w-full md:w-auto btn-primary px-10 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3">
-                            Quero o Guia Completo <i class="fa-solid fa-cart-shopping"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Rodapé -->
-        <footer class="py-12 border-t border-gray-100 bg-white">
-            <div class="max-w-7xl mx-auto px-6 text-center text-gray-400 text-sm">
-                <p>© 2026 NR-1 Psicologia. Todos os direitos reservados.</p>
-            </div>
-        </footer>
-    </main>
-
-    <!-- DASHBOARD -->
-    <main id="dashboard" class="page-section pt-24 bg-gray-50 min-h-screen">
-        <div class="max-w-7xl mx-auto px-6 py-10">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
-                <div>
-                    <h1 class="text-3xl font-bold text-[#1A3C34]">Dashboard de Compliance</h1>
-                    <p class="text-gray-500">Gestão de Riscos Psicossociais - Empresa Exemplo</p>
-                </div>
-                <div class="flex gap-3">
-                    <button onclick="showPage('home')" class="bg-white border border-gray-200 px-6 py-2.5 rounded-full text-sm font-medium hover:bg-gray-50">Sair</button>
-                    <button class="bg-[#D9836B] text-white px-6 py-2.5 rounded-full text-sm font-medium">Exportar PGR</button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                <div class="bg-white p-8 rounded-3xl card-shadow border-t-4 border-green-500">
-                    <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Status NR-1</h3>
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-3xl font-bold text-[#1A3C34]">Ativo</span>
-                        <i class="fa-solid fa-circle-check text-green-500 text-xl"></i>
-                    </div>
-                    <p class="text-xs text-gray-500">Inventário atualizado em Jan/2026</p>
-                </div>
-
-                <div class="bg-white p-8 rounded-3xl card-shadow locked-widget">
-                    <div class="locked-overlay">
-                        <button class="bg-[#1A3C34] text-white px-4 py-2 rounded-lg text-xs font-bold">Liberar Módulo Burnout</button>
-                    </div>
-                    <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Escala de Burnout</h3>
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-3xl font-bold text-gray-300">--</span>
-                        <i class="fa-solid fa-lock text-gray-300"></i>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-3xl card-shadow locked-widget">
-                    <div class="locked-overlay">
-                        <button class="bg-[#1A3C34] text-white px-4 py-2 rounded-lg text-xs font-bold">Liberar Clima</button>
-                    </div>
-                    <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Engajamento</h3>
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-3xl font-bold text-gray-300">--</span>
-                        <i class="fa-solid fa-lock text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Detalhamento -->
-            <div class="bg-white rounded-[40px] p-10 card-shadow">
-                <h2 class="text-xl font-bold text-[#1A3C34] mb-8">Fatores de Risco Identificados (Maio 2025)</h2>
-                <div class="space-y-8">
-                    <div class="flex items-center gap-6">
-                        <div class="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center text-red-500 flex-shrink-0">
-                            <i class="fa-solid fa-weight-hanging text-2xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex justify-between mb-2">
-                                <span class="font-bold">Exigências Cognitivas</span>
-                                <span class="text-red-500 font-bold">ALTO</span>
-                            </div>
-                            <div class="w-full bg-gray-100 h-2 rounded-full">
-                                <div class="bg-red-500 h-full rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-6">
-                        <div class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-500 flex-shrink-0">
-                            <i class="fa-solid fa-clock text-2xl"></i>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex justify-between mb-2">
-                                <span class="font-bold">Jornada de Trabalho</span>
-                                <span class="text-orange-500 font-bold">MÉDIO</span>
-                            </div>
-                            <div class="w-full bg-gray-100 h-2 rounded-full">
-                                <div class="bg-orange-500 h-full rounded-full" style="width: 50%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Modal Login -->
-    <div id="loginModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] hidden flex items-center justify-center p-6">
-        <div class="bg-white w-full max-w-md rounded-[32px] p-10 relative shadow-2xl">
-            <button onclick="closeLogin()" class="absolute top-6 right-6 text-gray-300 hover:text-gray-500">
-                <i class="fa-solid fa-xmark text-xl"></i>
-            </button>
-            <div class="text-center mb-10">
-                <div class="w-16 h-16 bg-[#D9836B]/10 text-[#D9836B] rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <i class="fa-solid fa-user-shield text-2xl"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-[#1A3C34]">Portal do Cliente</h2>
-                <p class="text-sm text-gray-400">Entre para gerir seus indicadores</p>
-            </div>
-            <div class="space-y-4">
-                <input type="text" placeholder="CNPJ ou E-mail" class="w-full px-6 py-4 rounded-2xl border border-gray-100 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#D9836B]/20">
-                <input type="password" placeholder="Senha" class="w-full px-6 py-4 rounded-2xl border border-gray-100 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#D9836B]/20">
-                <button onclick="performLogin()" class="w-full btn-primary py-4 rounded-2xl font-bold text-lg">Aceder ao Painel</button>
-            </div>
-        </div>
+    <div class="immersive-bg">
+        <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+            <path d="M150,500 C150,200 850,200 850,500 S150,800 150,500" fill="none" stroke="currentColor" stroke-width="2" />
+            <circle cx="500" cy="500" r="300" fill="none" stroke="currentColor" stroke-width="1" />
+        </svg>
     </div>
 
-    <script>
-        function showPage(pageId) {
-            window.scrollTo(0, 0);
-            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+    <!-- Navegação -->
+    <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-50 glass-panel px-8 py-4 rounded-full flex items-center gap-12">
+        <div class="flex items-center gap-2 font-black text-lg">
+            FABER<div class="w-3 h-3 bg-[#D9836B] rounded-full animate-pulse"></div>MENTIS
+        </div>
+        <div class="hidden md:flex gap-8 text-[14px] font-bold uppercase tracking-widest opacity-40">
+            <a href="#hero" class="hover:opacity-100 transition-all">Início</a>
+            <a href="#impacto-financeiro" class="hover:opacity-100 transition-all">Impacto</a>
+            <a href="#panorama" class="hover:opacity-100 transition-all">Panorama</a>
+            <a href="#servicos" class="hover:opacity-100 transition-all">Serviços</a>
+        </div>
+        <a href="./login.html" class="group relative inline-flex items-center justify-center bg-black text-white px-5 py-2.5 rounded-full text-[14px] font-bold tracking-widest overflow-hidden">
+            <span class="relative z-10">Acessar</span>
+            <div class="absolute inset-0 bg-[#D9836B] translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="min-h-screen flex flex-col justify-center items-center px-8 text-center pt-20">
+        <div class="space-y-8 max-w-6xl">
+            <p class="text-[#D9836B] font-bold text-xs uppercase tracking-[0.4em]" id="sub-title">Gestão de Riscos Psicossociais</p>
+            <h1 class="hero-title">
+                Do inconsciente ao compliance <br> em saúde mental.
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-500 max-w-3xl mx-auto leading-relaxed opacity-0" id="hero-desc">
+                Transforme a obrigatoriedade da NR-1 em qualidade de vida no trabalho.
+            </p>
+            <div class="pt-8 opacity-0" id="hero-cta">
+                <a href="#impacto-financeiro" class="group relative inline-block px-12 py-6 bg-[#1A3C34] text-white rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105">
+                    <span class="relative z-10">Conheça como</span>
+                    <div class="absolute inset-0 bg-[#D9836B] translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 animate-bounce opacity-20">
+            <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </div>
+    </header>
+
+    <!-- Seção Impacto Financeiro -->
+    <section id="impacto-financeiro" class="py-32 px-8 bg-[#1A3C34] text-white overflow-hidden scroll-mt-20">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+            <div class="space-y-8 reveal-left">
+                <h2 class="text-5xl font-bold tracking-tighter leading-tight">O custo da omissão <br> vs. o valor do cuidado.</h2>
+                <p class="text-lg opacity-70 leading-relaxed max-w-lg">
+                    Saúde mental é sustentabilidade financeira. Negligenciar a NR-1 gera custos invisíveis que drenam a lucratividade através de afastamentos e baixa eficiência.
+                </p>
+            </div>
             
-            const target = document.getElementById(pageId);
-            if (target) {
-                target.classList.add('active');
-            }
+            <div class="flex flex-col gap-6 reveal-right">
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="impact-card">
+                        <span class="text-3xl font-bold text-[#D9836B] block mb-2">-25%</span>
+                        <p class="text-[10px] uppercase tracking-widest font-bold opacity-40 mb-3">Turnover</p>
+                        <p class="text-sm opacity-60">Redução na rotatividade com suporte adequado.</p>
+                    </div>
+                    <div class="impact-card">
+                        <span class="text-3xl font-bold text-[#D9836B] block mb-2">+31%</span>
+                        <p class="text-[10px] uppercase tracking-widest font-bold opacity-40 mb-3">Produtividade</p>
+                        <p class="text-sm opacity-60">Ganhos reais em performance e engajamento.</p>
+                    </div>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-4xl font-bold text-[#D9836B] block mb-2">4x</span>
+                            <p class="text-[10px] uppercase tracking-widest font-bold opacity-40 mb-3">Retorno Médio (ROI)</p>
+                            <p class="text-sm opacity-60">Para cada R$ 1,00 investido, o retorno é de R$ 4,00 em ganhos operacionais.</p>
+                        </div>
+                        <div class="text-[10px] opacity-30 text-right self-end">WHO/OMS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            // Controle da visibilidade do Nav principal
-            const nav = document.getElementById('mainNav');
-            if (pageId === 'dashboard') {
-                nav.classList.add('hidden');
-            } else {
-                nav.classList.remove('hidden');
-            }
-        }
+    <!-- Seção de Dados e Inovação (Conteúdo restaurado e expandido) -->
+    <section id="panorama" class="py-40 px-8 max-w-7xl mx-auto">
+        <div class="bento-grid">
+            <!-- Box Imagem Principal -->
+            <div class="col-span-12 md:col-span-8 bento-item bg-white overflow-hidden group relative min-h-[500px]">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200" 
+                     class="absolute inset-0 w-full h-full object-cover opacity-80 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" alt="Equipe">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1A3C34] to-transparent p-12 flex flex-col justify-end text-white">
+                    <h3 class="text-4xl font-bold mb-4">O invisível agora tem voz.</h3>
+                    <p class="max-w-md opacity-70">A nova NR-1 exige que riscos psicossociais sejam inventariados. Nós damos as ferramentas para que isso seja feito com dignidade e precisão técnica.</p>
+                </div>
+            </div>
 
-        function openLogin() {
-            document.getElementById('loginModal').classList.remove('hidden');
-        }
+            <!-- Box Estatística -->
+            <div class="col-span-12 md:col-span-4 bento-item glass-panel flex flex-col justify-center items-center text-center space-y-4 border-none bg-[#D9836B] text-white">
+                <span class="text-8xl font-black tracking-tighter">19</span>
+                <p class="text-xs font-bold uppercase tracking-[0.3em]">Afastamentos/Dia</p>
+                <p class="text-sm opacity-80 px-4">Esta é a realidade em Curitiba. O compliance ético reduz este impacto direto no seu FAP/RAT.</p>
+            </div>
 
-        function closeLogin() {
-            document.getElementById('loginModal').classList.add('hidden');
-        }
+            <!-- Box Prazo Final (Restaurado) -->
+            <div class="col-span-12 md:col-span-4 bento-item bg-white border border-gray-100 flex flex-col justify-between group hover:border-[#D9836B] transition-colors">
+                <div class="space-y-4">
+                    <div class="info-pill w-fit">Urgente</div>
+                    <h4 class="text-4xl font-bold tracking-tighter">Maio 2025</h4>
+                </div>
+                <p class="text-sm text-gray-500">Prazo final para a atualização do PGR com o Inventário de Riscos Psicossociais. Sua empresa está preparada?</p>
+            </div>
 
-        function performLogin() {
-            closeLogin();
-            showPage('dashboard');
-        }
+            <!-- Box Inovação (Restaurado) -->
+            <div class="col-span-12 md:col-span-8 bento-item bg-white border border-gray-100 flex flex-col justify-center gap-8">
+                <div class="flex justify-between items-center">
+                    <h4 class="text-2xl font-bold">Inovação em Saúde Ocupacional</h4>
+                    <i class="fa-solid fa-microchip text-[#D9836B] text-2xl"></i>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="space-y-2">
+                        <div class="w-8 h-1 bg-[#D9836B]"></div>
+                        <p class="text-xs font-bold uppercase opacity-40">Mapeamento</p>
+                        <p class="text-sm font-medium">Clima e Burnout</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="w-8 h-1 bg-[#D9836B]"></div>
+                        <p class="text-xs font-bold uppercase opacity-40">Inventário</p>
+                        <p class="text-sm font-medium">Riscos Dinâmico</p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="w-8 h-1 bg-[#D9836B]"></div>
+                        <p class="text-xs font-bold uppercase opacity-40">Liderança</p>
+                        <p class="text-sm font-medium">Treinamentos Éticos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Smooth scroll para links internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    e.preventDefault();
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
+    <!-- Seção Serviços Prestados (Ajustada) -->
+    <section id="servicos" class="py-32 px-8 bg-gray-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 reveal-left">
+                <div>
+                    <p class="text-[#D9836B] font-bold text-xs uppercase tracking-[0.4em] mb-4">O que entregamos</p>
+                    <h2 class="text-5xl font-bold tracking-tighter">Serviços Prestados.</h2>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-6 min-h-[500px]">
+                <!-- Serviço 1 -->
+                <div class="service-card" data-service>
+                    <div class="flex justify-between items-start">
+                        <div class="service-icon">
+                        <i class="fa-solid fa-bolt text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="service-title">Ações pontuais</h3>
+
+                        <div class="service-content">
+                        <p class="text-lg opacity-80 leading-relaxed">
+                            Desenvolvemos palestras de alto impacto, workshops de sensibilização e intervenções em SIPATs que removem o estigma e iniciam diálogos saudáveis sobre saúde mental.
+                        </p>
+
+                        <ul class="mt-6 space-y-3 text-sm opacity-60">
+                            <li>• Palestras Motivacionais com Foco Clínico</li>
+                            <li>• Workshops para Equipes Operacionais</li>
+                            <li>• Rodas de Conversa Mediadas</li>
+                        </ul>
+                        </div>
+                    </div>
+
+                    <div class="service-cta">Explorar Serviço</div>
+                </div>
+
+                <!-- Serviço 2 -->
+                <div class="service-card" data-service>
+                    <div class="flex justify-between items-start">
+                        <div class="service-icon">
+                        <i class="fa-solid fa-handshake-angle text-2xl"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="service-title">Consultoria RH</h3>
+
+                        <div class="service-content">
+                        <p class="text-lg opacity-80 leading-relaxed">
+                            Suporte estratégico na criação de protocolos...
+                        </p>
+
+                        <ul class="mt-6 space-y-3 text-sm opacity-60">
+                            <li>• Estruturação de Programas de EAP</li>
+                            <li>• Gestão de Afastados e Retorno ao Trabalho</li>
+                            <li>• Mentoria para Líderes de Pessoas</li>
+                        </ul>
+                        </div>
+                    </div>
+
+                    <div class="service-cta">Explorar Serviço</div>
+                </div>
+
+                <!-- Serviço 3 -->
+                <div class="service-card" data-service>
+                <div class="flex justify-between items-start">
+                    <div class="service-icon">
+                    <i class="fa-solid fa-brain text-2xl"></i>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="service-title">Avaliação dos níveis de saúde mental</h3>
+
+                    <div class="service-content">
+                    <p class="text-lg opacity-80 leading-relaxed">
+                        Mapeamento técnico de riscos psicossociais para atendimento à NR-1. Utilizamos ferramentas científicas para diagnósticos precisos e laudos conclusivos.
+                    </p>
+
+                    <ul class="mt-6 space-y-3 text-sm opacity-60">
+                            <li>• Inventário de Riscos Psicossociais (GRO)</li>
+                            <li>• Avaliação de Risco para Altura e Espaço Confinado</li>
+                            <li>• Pesquisas de Clima e Burnout</li>
+                    </ul>
+                    </div>
+                </div>
+
+                <div class="service-cta">Explorar Serviço</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-32 px-8 bg-white border-t border-gray-50 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+            <h2 class="text-5xl font-bold tracking-tighter">Pronto para o <br> próximo nível?</h2>
+            <div class="space-y-8">
+                <p class="text-gray-400 max-w-sm">Entre em contato para um diagnóstico preliminar e descubra como a NR-1 pode ser o motor da sua eficiência operacional.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-2xl hover:text-[#D9836B] transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" class="text-2xl hover:text-[#D9836B] transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="absolute -bottom-20 left-0 text-[20vw] font-black text-gray-50 select-none -z-10 tracking-tighter uppercase">Compliance</div>
+    </footer>
+
+
+<script type="module" src="./assets/js/pages/index.js"></script>
 </body>
-</html> 
+</html>

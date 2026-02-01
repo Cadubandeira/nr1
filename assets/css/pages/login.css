@@ -1,0 +1,41 @@
+/* ==============================
+   Login page
+================================ */
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+}
+
+/* Centralização */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Form */
+.login-form input {
+  width: 100%;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: #f5f5f5;
+  font-size: var(--font-sm);
+  outline: none;
+  transition: box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.login-form input:focus {
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+.login-back {
+  font-size: var(--font-sm);
+  color: var(--color-text-muted);
+  transition: color var(--duration-fast);
+}
+
+.login-back:hover {
+  color: var(--color-accent);
+}

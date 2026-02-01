@@ -1,0 +1,115 @@
+/* ==============================
+   Glass / Surfaces
+================================ */
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(40px) saturate(150%);
+  -webkit-backdrop-filter: blur(40px) saturate(150%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-medium);
+}
+
+/* ==============================
+   Buttons
+================================ */
+
+.button-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-full);
+
+  background-color: var(--color-primary);
+  color: white;
+
+  font-size: var(--font-sm);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  overflow: hidden;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.button-primary:hover {
+  transform: scale(1.05);
+}
+
+/* overlay accent */
+.button-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent);
+  transform: translateY(100%);
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.button-primary:hover::after {
+  transform: translateY(0);
+}
+
+.button-primary span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==============================
+   Cursor
+================================ */
+
+#custom-cursor {
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  background: var(--color-accent);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform var(--duration-fast) var(--ease-out);
+  will-change: transform;
+}
+
+/* ==============================
+   Titles
+================================ */
+
+.hero-title {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: var(--weight-black);
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 30%,
+    var(--color-accent) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ==============================
+   Cards
+================================ */
+
+.impact-card,
+.service-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  transition: all var(--duration-slow) var(--ease-out);
+}
+
+.impact-card {
+  padding: var(--space-8);
+}
+
+.service-card {
+  cursor: pointer;
+}

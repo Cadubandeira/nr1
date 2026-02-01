@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NR-1 | Portal de Gestão</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --apple-bg: #FBFBFD;
+            --apple-card: #FFFFFF;
+            --clay-soft: #D9836B;
+            --forest-deep: #1D1D1F;
+            --text-secondary: #86868B;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--apple-bg);
+            color: var(--forest-deep);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+
+        /* Estilo Apple Glass */
+        .glass-nav {
+            background: rgba(251, 251, 253, 0.7);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 0.5px solid rgba(0,0,0,0.08);
+        }
+
+        /* Card Minimalista com Afeto */
+        .apple-card {
+            background: var(--apple-card);
+            border-radius: 24px;
+            border: 0.5px solid rgba(0,0,0,0.05);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .apple-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+        }
+
+        /* Botão Minimalista */
+        .btn-apple {
+            background-color: var(--forest-deep);
+            color: white;
+            border-radius: 980px;
+            padding: 12px 24px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-apple:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .btn-secondary {
+            background: rgba(0,0,0,0.04);
+            color: var(--forest-deep);
+            border-radius: 980px;
+            padding: 12px 24px;
+            font-weight: 500;
+        }
+
+        /* Progress Bar Soft */
+        .progress-bg {
+            background: rgba(0,0,0,0.03);
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 6px;
+            border-radius: 100px;
+            transition: width 1.5s ease-out;
+        }
+
+        /* SPA Structure */
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+
+        .risk-badge {
+            background: #FFF4F2;
+            color: #D9836B;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegação Estilo Apple -->
+    <nav class="glass-nav fixed w-full z-50">
+        <div class="max-w-6xl mx-auto px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('home')">
+                <div class="w-7 h-7 bg-[#D9836B] rounded-lg flex items-center justify-center text-white">
+                    <i class="fa-solid fa-leaf text-xs"></i>
+                </div>
+                <span class="font-poppins font-semibold text-sm tracking-tight">NR1 Portal</span>
+            </div>
+            
+            <div id="nav-links-home" class="hidden md:flex items-center gap-8 text-[13px] font-medium text-gray-500">
+                <a href="#solucoes" class="hover:text-black transition-colors">Soluções</a>
+                <a href="#metodologia" class="hover:text-black transition-colors">Metodologia</a>
+                <button onclick="openLogin()" class="text-black hover:opacity-70 transition-all">Acesso Restrito</button>
+            </div>
+
+            <div id="nav-links-dash" class="hidden flex items-center gap-6">
+                <button onclick="showPage('home')" class="text-[13px] font-medium text-gray-400 hover:text-red-500 transition-colors">
+                    Sair
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- LANDING PAGE (Resumida para foco no Dashboard) -->
+    <main id="home" class="page-section active pt-48 pb-32">
+        <div class="max-w-4xl mx-auto px-8 text-center space-y-8">
+            <h1 class="text-6xl md:text-7xl font-bold tracking-tight text-[#1D1D1F]">
+                Saúde mental é <br> <span class="text-[#D9836B]">estratégia.</span>
+            </h1>
+            <p class="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                Transformamos dados em bem-estar. Consultoria especializada em NR-1 com foco em riscos psicossociais.
+            </p>
+            <div class="flex justify-center gap-4 pt-4">
+                <button class="btn-apple px-8 py-4">Falar com Consultor</button>
+                <button onclick="openLogin()" class="btn-secondary px-8 py-4">Área do Cliente</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- DASHBOARD MINIMALISTA -->
+    <main id="dashboard" class="page-section pt-32 pb-24">
+        <div class="max-w-5xl mx-auto px-8">
+            
+            <!-- Header do Dashboard -->
+            <header class="mb-16 space-y-2">
+                <p class="text-[#D9836B] font-semibold text-xs uppercase tracking-widest">Painel de Controle</p>
+                <h2 class="text-4xl font-semibold tracking-tight">Bom dia, <span class="text-gray-400">Curitiba Soluções.</span></h2>
+                <p class="text-gray-400 text-sm">Seus indicadores estão estáveis hoje.</p>
+            </header>
+
+            <!-- Cards de Impacto -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12">
+                
+                <!-- Nível de Risco - Destaque Principal -->
+                <div class="md:col-span-8 apple-card p-10 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-12">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-400 mb-1">Nível de Risco Geral</h3>
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-5xl font-semibold">6.4</span>
+                                    <span class="text-gray-400 text-lg">/ 10</span>
+                                </div>
+                            </div>
+                            <span class="risk-badge">Risco Médio</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between text-[13px] font-medium">
+                                <span class="text-gray-400">Zona de Atenção</span>
+                                <span class="text-[#D9836B]">Ação Recomendada</span>
+                            </div>
+                            <div class="progress-bg">
+                                <div class="progress-fill bg-[#D9836B]" style="width: 64%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insights Rápidos -->
+                <div class="md:col-span-4 space-y-6">
+                    <div class="apple-card p-8 bg-[#1D1D1F] text-white">
+                        <i class="fa-solid fa-shield-check text-[#D9836B] text-xl mb-4"></i>
+                        <h4 class="text-sm font-medium opacity-60 mb-1">Status NR-1</h4>
+                        <p class="text-xl font-medium">Conformidade Ativa</p>
+                    </div>
+                    <div class="apple-card p-8 border-dashed border-2 bg-transparent border-gray-100 flex items-center justify-center text-center">
+                        <div>
+                            <p class="text-xs text-gray-400 font-medium leading-relaxed">Próxima avaliação programada para<br><span class="text-black">15 de Março, 2026</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fatores Detalhados - Estilo Limpo -->
+            <section class="mb-20">
+                <div class="flex items-baseline justify-between mb-8 px-2">
+                    <h3 class="text-xl font-semibold">Fatores de Risco Detalhados</h3>
+                    <span class="text-xs text-gray-400">Métricas baseadas na última coleta</span>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-x-16 gap-y-10 px-2">
+                    <div class="space-y-6">
+                        <div class="group">
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-500 group-hover:text-black transition-colors">Sobrecarga de Trabalho</span>
+                                <span class="font-semibold">85%</span>
+                            </div>
+                            <div class="progress-bg"><div class="progress-fill bg-red-400" style="width: 85%"></div></div>
+                        </div>
+                        <div class="group">
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-500 group-hover:text-black transition-colors">Pressão de Tempo</span>
+                                <span class="font-semibold">50%</span>
+                            </div>
+                            <div class="progress-bg"><div class="progress-fill bg-orange-300" style="width: 50%"></div></div>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="group">
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-500 group-hover:text-black transition-colors">Suporte da Gestão</span>
+                                <span class="font-semibold text-green-500">20%</span>
+                            </div>
+                            <div class="progress-bg"><div class="progress-fill bg-green-400" style="width: 20%"></div></div>
+                        </div>
+                        <div class="group">
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-500 group-hover:text-black transition-colors">Incerteza do Futuro</span>
+                                <span class="font-semibold">35%</span>
+                            </div>
+                            <div class="progress-bg"><div class="progress-fill bg-gray-300" style="width: 35%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recursos Sugeridos - Curadoria Afetiva -->
+            <section class="space-y-8">
+                <div class="space-y-2 px-2">
+                    <h3 class="text-2xl font-semibold">Para você hoje</h3>
+                    <p class="text-gray-400 text-sm">Materiais selecionados com base na sua carga de trabalho crítica.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Recurso 1 -->
+                    <div class="apple-card p-8 flex flex-col h-[300px]">
+                        <div class="flex-1">
+                            <div class="w-10 h-10 bg-red-50 text-[#D9836B] rounded-xl flex items-center justify-center mb-6">
+                                <i class="fa-solid fa-book-open text-sm"></i>
+                            </div>
+                            <h4 class="font-semibold text-lg mb-2">Manual de <br>Sobrecarga</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">Estratégias para líderes diluírem a pressão nas entregas semanais.</p>
+                        </div>
+                        <button class="text-[13px] font-semibold text-[#D9836B] flex items-center gap-2 hover:gap-3 transition-all">
+                            Começar leitura <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                    </div>
+
+                    <!-- Recurso 2 -->
+                    <div class="apple-card p-8 flex flex-col h-[300px]">
+                        <div class="flex-1">
+                            <div class="w-10 h-10 bg-blue-50 text-blue-400 rounded-xl flex items-center justify-center mb-6">
+                                <i class="fa-solid fa-video text-sm"></i>
+                            </div>
+                            <h4 class="font-semibold text-lg mb-2">Workshop em <br>Vídeo: Gestão</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">Treinamento rápido para o setor de RH sobre compliance NR-1.</p>
+                        </div>
+                        <button class="text-[13px] font-semibold text-blue-400 flex items-center gap-2 hover:gap-3 transition-all">
+                            Assistir agora <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                    </div>
+
+                    <!-- Recurso 3 -->
+                    <div class="apple-card p-8 border-2 border-[#D9836B]/20 bg-[#D9836B]/5 flex flex-col h-[300px]">
+                        <div class="flex-1 text-center flex flex-col items-center justify-center">
+                            <i class="fa-solid fa-circle-nodes text-3xl text-[#D9836B] mb-4"></i>
+                            <h4 class="font-semibold text-lg mb-2 text-[#D9836B]">Consultoria Individual</h4>
+                            <p class="text-[13px] text-gray-500 px-4">Agende uma conversa de 15min para ajustar seu plano de ação.</p>
+                        </div>
+                        <button class="btn-apple py-3 w-full text-xs">Agendar Horário</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal Login Estilo Apple -->
+    <div id="loginModal" class="fixed inset-0 bg-white/80 backdrop-blur-xl z-[100] hidden flex items-center justify-center p-6">
+        <div class="w-full max-w-xs space-y-10">
+            <div class="text-center space-y-4">
+                <div class="w-12 h-12 bg-[#D9836B] rounded-2xl mx-auto flex items-center justify-center text-white text-xl">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+                <h2 class="text-3xl font-semibold tracking-tight">Portal NR-1</h2>
+            </div>
+            
+            <div class="space-y-3">
+                <input type="text" placeholder="ID da Empresa" class="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-1 focus:ring-black outline-none transition-all placeholder:text-gray-400 text-sm">
+                <input type="password" placeholder="Senha" class="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-1 focus:ring-black outline-none transition-all placeholder:text-gray-400 text-sm">
+                <button onclick="performLogin()" class="w-full btn-apple py-4 mt-4">Entrar</button>
+                <button onclick="closeLogin()" class="w-full text-gray-400 text-[13px] font-medium mt-6">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            const target = document.getElementById(pageId);
+            if (target) target.classList.add('active');
+
+            const homeLinks = document.getElementById('nav-links-home');
+            const dashLinks = document.getElementById('nav-links-dash');
+
+            if (pageId === 'dashboard') {
+                homeLinks.classList.add('hidden');
+                dashLinks.classList.remove('hidden');
+            } else {
+                homeLinks.classList.remove('hidden');
+                dashLinks.classList.add('hidden');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openLogin() { document.getElementById('loginModal').classList.remove('hidden'); }
+        function closeLogin() { document.getElementById('loginModal').classList.add('hidden'); }
+        function performLogin() { closeLogin(); showPage('dashboard'); }
+    </script>
+</body>
+</html>

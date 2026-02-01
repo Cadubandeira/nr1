@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NR-1 | Uma Experiência Imersiva em Gestão Humana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --clay: #D9836B;
+            --forest: #1A3C34;
+            --canvas: #FBFBFD;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--canvas);
+            color: var(--forest);
+            overflow-x: hidden;
+            cursor: none; /* Cursor personalizado */
+        }
+
+        /* Cursor Personalizado */
+        #custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--clay);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.2s ease;
+        }
+
+        /* Efeito de Vidro Profundo */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(40px) saturate(150%);
+            -webkit-backdrop-filter: blur(40px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.03);
+        }
+
+        /* Headline com Máscara de Gradiente */
+        .hero-title {
+            font-size: clamp(3.5rem, 12vw, 7rem);
+            font-weight: 800;
+            line-height: 0.9;
+            letter-spacing: -0.06em;
+            background: linear-gradient(135deg, var(--forest) 30%, var(--clay) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Seção Imersiva (Background) */
+        .immersive-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        /* Bento Box Moderno */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+
+        .bento-item {
+            border-radius: 48px;
+            padding: 48px;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* Scroll Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--clay);
+            z-index: 1000;
+            width: 0%;
+        }
+
+        .reveal-text {
+            overflow: hidden;
+        }
+
+        .char {
+            display: inline-block;
+            transform: translateY(100%);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+    <div id="custom-cursor"></div>
+
+    <!-- Background Decorativo Imersivo -->
+    <div class="immersive-bg">
+        <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+            <path d="M150,500 C150,200 850,200 850,500 S150,800 150,500" fill="none" stroke="currentColor" stroke-width="2" />
+            <circle cx="500" cy="500" r="300" fill="none" stroke="currentColor" stroke-width="1" />
+        </svg>
+    </div>
+
+    <!-- Navegação Flutuante -->
+    <nav class="fixed top-8 left-1/2 -translate-x-1/2 z-50 glass-panel px-8 py-4 rounded-full flex items-center gap-12">
+        <div class="flex items-center gap-2 font-black text-lg">
+            <div class="w-3 h-3 bg-[#D9836B] rounded-full animate-pulse"></div>
+            NR1.CORE
+        </div>
+        <div class="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-widest opacity-40">
+            <a href="#" class="hover:opacity-100 transition-all">Metodologia</a>
+            <a href="#" class="hover:opacity-100 transition-all">Impacto</a>
+            <a href="#" class="hover:opacity-100 transition-all">Ética</a>
+        </div>
+        <button class="bg-black text-white px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest">Painel</button>
+    </nav>
+
+    <!-- Hero Section: O Despertar -->
+    <header class="min-h-screen flex flex-col justify-center items-center px-8 text-center pt-20">
+        <div class="space-y-6 max-w-6xl">
+            <p class="text-[#D9836B] font-bold text-xs uppercase tracking-[0.4em] reveal-text" id="sub-title">Conformidade Através do Afeto</p>
+            <h1 class="hero-title" id="main-title">
+                Sua cultura <br> é o seu maior <br> patrimônio.
+            </h1>
+            <div class="pt-12 opacity-0" id="hero-cta">
+                <button class="group relative px-12 py-6 bg-[#1A3C34] text-white rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-110">
+                    <span class="relative z-10">Iniciar Jornada NR-1</span>
+                    <div class="absolute inset-0 bg-[#D9836B] translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Elemento de Scroll -->
+        <div class="absolute bottom-10 animate-bounce opacity-20">
+            <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </div>
+    </header>
+
+    <!-- Seção de Dados Imersivos (Scroll Trigger) -->
+    <section class="py-40 px-8 max-w-7xl mx-auto">
+        <div class="bento-grid">
+            
+            <!-- Card Principal de Imagem -->
+            <div class="col-span-12 md:col-span-8 bento-item bg-white overflow-hidden group relative min-h-[500px]">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200" 
+                     class="absolute inset-0 w-full h-full object-cover opacity-80 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" alt="Equipe">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1A3C34] to-transparent p-12 flex flex-col justify-end text-white">
+                    <h3 class="text-4xl font-bold mb-4">O invisível agora tem voz.</h3>
+                    <p class="max-w-md opacity-70">A nova NR-1 exige que riscos psicossociais sejam inventariados. Nós damos as ferramentas para que isso seja feito com dignidade.</p>
+                </div>
+            </div>
+
+            <!-- Card de Dados Curitiba -->
+            <div class="col-span-12 md:col-span-4 bento-item glass-panel flex flex-col justify-center items-center text-center space-y-4 border-none bg-[#D9836B] text-white">
+                <span class="text-8xl font-black tracking-tighter">19</span>
+                <p class="text-xs font-bold uppercase tracking-[0.3em]">Afastamentos/Dia</p>
+                <p class="text-sm opacity-80 px-4">Esta é a realidade em Curitiba. O compliance ético reduz este impacto.</p>
+            </div>
+
+            <!-- Card de Prazo -->
+            <div class="col-span-12 md:col-span-4 bento-item bg-[#1A3C34] text-white flex flex-col justify-between h-[400px]">
+                <i class="fa-solid fa-calendar-check text-4xl text-[#D9836B]"></i>
+                <div class="space-y-4">
+                    <h4 class="text-3xl font-bold leading-none text-[#D9836B]">Maio <br> 2025</h4>
+                    <p class="text-sm opacity-50">O ponto de inflexão para o mercado de trabalho brasileiro.</p>
+                </div>
+            </div>
+
+            <!-- Card de Metodologia -->
+            <div class="col-span-12 md:col-span-8 bento-item bg-white border border-gray-100 p-12 grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold">Nossa Abordagem <br> em 3 Camadas</h3>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-[#D9836B] rounded-full"></span> Diagnóstico Baseado em Evidências</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-[#D9836B] rounded-full"></span> Inventário de Riscos Dinâmico</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-[#D9836B] rounded-full"></span> Acompanhamento Ético Contínuo</li>
+                    </ul>
+                </div>
+                <div class="flex justify-center">
+                    <!-- Ilustração minimalista de equilíbrio -->
+                    <div class="w-40 h-40 border-2 border-[#D9836B]/20 rounded-full flex items-center justify-center relative">
+                        <div class="w-20 h-20 bg-[#D9836B] rounded-full animate-ping opacity-20 absolute"></div>
+                        <i class="fa-solid fa-fingerprint text-5xl text-[#D9836B]"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer Imersivo -->
+    <footer class="py-32 px-8 bg-white border-t border-gray-50 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+            <h2 class="text-5xl font-bold tracking-tighter">Vamos construir um <br> futuro seguro?</h2>
+            <div class="space-y-8">
+                <p class="text-gray-400 max-w-sm">Entre em contato para um diagnóstico preliminar sem custos. Ética na psicologia, rigor no compliance.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-2xl hover:text-[#D9836B] transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" class="text-2xl hover:text-[#D9836B] transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- Texto Gigante no Fundo -->
+        <div class="absolute -bottom-20 left-0 text-[20vw] font-black text-gray-50 select-none -z-10 tracking-tighter">COMPLIANCE</div>
+    </footer>
+
+    <script>
+        // Registrar ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Cursor Personalizado
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX - 10,
+                y: e.clientY - 10,
+                duration: 0.1
+            });
+        });
+
+        // Hover effect cursor
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 3 }));
+            el.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1 }));
+        });
+
+        // Animação Hero
+        const tl = gsap.timeline({defaults: {ease: "power4.out"}});
+
+        tl.from("#main-title", {
+            y: 100,
+            opacity: 0,
+            duration: 1.5,
+            delay: 0.5
+        })
+        .to("#hero-cta", {
+            opacity: 1,
+            y: -20,
+            duration: 1
+        }, "-=1");
+
+        // Scroll Progress Bar
+        gsap.to("#progress-bar", {
+            width: "100%",
+            scrollTrigger: {
+                trigger: "body",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.3
+            }
+        });
+
+        // Bento Grid Reveal
+        gsap.utils.toArray(".bento-item").forEach(item => {
+            gsap.from(item, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+
+        // Efeito de movimento no fundo conforme o mouse
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 40;
+            const y = (e.clientY / window.innerHeight - 0.5) * 40;
+            gsap.to(".immersive-bg", {
+                x: x,
+                y: y,
+                duration: 2,
+                ease: "power2.out"
+            });
+        });
+    </script>
+</body>
+</html>
