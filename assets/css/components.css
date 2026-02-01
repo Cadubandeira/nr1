@@ -100,16 +100,17 @@
 
 .impact-card,
 .service-card {
-  background: var(--color-surface);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-soft);
   transition: all var(--duration-slow) var(--ease-out);
 }
 
 .impact-card {
   padding: var(--space-8);
+  background-color: var(--color-surface-alt);
 }
 
 .service-card {
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
   cursor: pointer;
 }

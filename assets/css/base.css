@@ -6,7 +6,8 @@
 
 /* Base */
 --color-bg: #FBFBFD; /* Canvas */
---color-surface: #FFFFFF;
+--color-surface: #FAFAFA;
+--color-surface-alt: #fafafa15;
 
 
 /* Text */
@@ -82,4 +83,9 @@
 :focus-visible {
 outline: var(--focus-ring);
 outline-offset: 4px;
+}
+
+/* Remove todos os cursores nativos */
+body, * {
+  cursor: none !important;
 }
